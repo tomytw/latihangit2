@@ -59,36 +59,62 @@
 		</div>
 	</div>
 
+	<div data-role="page" id="page-2">
 
-	
-
-
-	<div data-role="page" id="page-3">
-
-		<div data-role="header" id="constantheader-wrapper">
+		<div data-role="header">
 			<div class="ui-grid-a">
-				<h1 class="ui-block-a">Rangkuman Materi</h1>
+				<h1 class="ui-block-a">Color Picker</h1>
 				<div class="ui-block-b" align="right">
 					<a class="ui-btn ui-btn-inline ui-corner-all" href="#menu" style="width: 30%;">Menu</a>
 				</div>
 			</div>
 		</div>
 
-		<div role="main" class="ui-content" align="center">
-			<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Click to view Rangkuman materi Git</a>
-			<div data-role="popup" id="popupBasic">
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-				<p>rangkumannnn BLOK</p>
-
+		<div role="main" class="ui-content">
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<form>
+				    <label for="slider-1" style="color: red;">Red :</label>
+				    <input type="range" name="redSlider" id="redSlider" min="0" max="255" value="0" onchange="setColorSlider()">
+					</form>
+				</div>
+				
+				<div class="ui-block-b">
+					<form>
+				    <label for="slider-2" style="color: green;">Green :</label>
+				    <input type="range" name="greenSlider" id="greenSlider" min="0" max="255" value="0" onchange="setColorSlider()">
+					</form>
+				</div>
+				
+				<div class="ui-block-c">
+					<form>
+				    <label for="slider-3" style="color: blue;">Blue :</label>
+				    <input type="range" name="blueSlider" id="blueSlider" min="0" max="255" value="0" onchange="setColorSlider()">
+					</form>
+				</div>
+				
 			</div>
+			<br><br>
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					
+				</div>
+				<div class="ui-block-b" style="text-align: center;">
+					<label for="colorHex">Color Hex: </label>
+					<input type="text" name="colorHex" id="colorHex" readonly>
+				</div>
+
+					
+			</div>
+
+			<div style="text-align: center;">
+				<div align="center">
+					<h3>Color Result :</h3>
+					<textarea style="width: 50%;" id="colorResult"></textarea>
+				</div>
+				
+			</div>
+
 		</div>
 
 		<div data-role="footer">
