@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery Mobile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+<body>
+
+	<div data-role="panel" id="menu" data-position="right">
+    	<select id="pages">
+		  <option value="1">Calculator</option>
+		  <option value="2">Color Picker</option>
+		  <option value="3">Rangkuman Materi</option>
+		</select>
+	</div>
+
+	<div data-role="page" id="page-1">
+
+		<div data-role="header" id="constantheader-wrapper">
+			<div class="ui-grid-a">
+				<h1 class="ui-block-a">Calculator</h1>
+				<div class="ui-block-b" align="right">
+					<a class="ui-btn ui-btn-inline ui-corner-all" href="#menu" style="width: 30%;">Menu</a>
+				</div>
+			</div>
+			
+		</div>
+
+		<div role="main" class="ui-content">
+			<div class="calculator ui-grid-b">
+				<div class="ui-block-a">
+					
+				</div>
+				<div class="ui-block-b">
+					<label for="angka">Input Angka</label>
+					<input type="number" name="angka" id="angka">
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<button onclick="pangkat()" >Pangkat</button>
+						</div>
+						<div class="ui-block-b">
+							<button onclick="faktorial()">Faktorial</button>
+						</div>
+					</div>
+
+					<input type="number" name="hasil" id="hasil">
+				</div>
+			</div>
+
+		</div>
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div>
+	</div>
+
+
+	
+
+
+	<div data-role="page" id="page-3">
+
+		<div data-role="header" id="constantheader-wrapper">
+			<div class="ui-grid-a">
+				<h1 class="ui-block-a">Rangkuman Materi</h1>
+				<div class="ui-block-b" align="right">
+					<a class="ui-btn ui-btn-inline ui-corner-all" href="#menu" style="width: 30%;">Menu</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="main" class="ui-content" align="center">
+			<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Click to view Rangkuman materi Git</a>
+			<div data-role="popup" id="popupBasic">
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+				<p>rangkumannnn BLOK</p>
+
+			</div>
+		</div>
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div>
+	</div>
+
+</body>
+
+	<script type="text/javascript">
+		setColorSlider();
+		
+		function numToHex(num){
+			var hex = Number(num).toString(16);
+			if(hex.length < 2){
+				hex = "0" +hex;
+			}
+
+			return hex;
+		}
+
+		function rgbToHex(r,g,b){
+			var redHex = numToHex(r);
+			var greenHex = numToHex(g);
+			var blueHex = numToHex(b);
+
+			return redHex+greenHex+blueHex;
+		}
+
+		function setColorSlider(){
+			var redNum = Number($("#redSlider").val());
+			var greenNum = Number($("#greenSlider").val());
+			var blueNum = Number($("#blueSlider").val());
+
+			console.log(redNum);
+
+			var hex = rgbToHex(redNum,greenNum,blueNum);
+
+			var colorString = "#"+hex;
+
+			$("#colorHex").val(colorString);
+			console.log(colorString);
+
+			$("#colorResult").css("background",colorString);
+		}
+
+		function pangkat(){
+			var teksAngka = $("#angka").val();
+			if(teksAngka == ""){
+				alert("Tolong inputkan angka terlebih dahulu!");
+				return;
+			}
+			var angka = Number(teksAngka);
+
+			if(isNaN(angka)){
+				alert("Yang ada inputkan bukan angka!");
+				return;
+			}
+
+			var angkaPangkat = prompt("Inputkan pangkat berapa : ");
+			while(isNaN(angkaPangkat))
+			{
+				angkaPangkat = prompt("Maaf inputan anda bukan angka, Inputkan pangkat berapa :");
+			}
+
+			if(angkaPangkat){
+				var hasil = angka ** angkaPangkat;
+				$("#hasil").val(hasil);
+			}
+
+		}
+
+		function calcFact(angka){
+			if(angka == 0)
+				return 1;
+			else if(angka < 0)
+				return -1;
+			else
+				return angka * calcFact(angka-1);
+		}
+
+		function faktorial(){
+			var teksAngka = $("#angka").val();
+			if(teksAngka == ""){
+				alert("Tolong inputkan angka terlebih dahulu!");
+				return;
+			}
+			var angka = Number(teksAngka);
+
+			if(isNaN(angka)){
+				alert("Yang ada inputkan bukan angka!");
+				return;
+			}
+
+			var hasil = calcFact(angka);
+			if(hasil == -1){
+				alert("Tolong masukkan angka >= 0 !");
+			}
+			$("#hasil").val(hasil);
+
+		}
+
+		$(document).ready(function(){
+
+		});
+
+		// function select(object,number){
+		// 	if(number == 1){
+		// 		console.log(object);
+		// 		object.selectedOptions[0].attr("selected", "selected");
+		// 		object.selectedOptions[1].removeAttr("selected");
+		// 		object.selectedOptions[2].removeAttr("selected");
+		// 	}
+		// 	else if(number==2){
+		// 		object.selectedOptions[1].attr("selected", "selected");
+		// 		object.selectedOptions[0].removeAttr("selected");
+		// 		object.selectedOptions[2].removeAttr("selected");
+		// 	}
+		// 	else if(number == 3){
+		// 		object.selectedOptions[2].attr("selected", "selected");
+		// 		object.selectedOptions[0].removeAttr("selected");
+		// 		object.selectedOptions[1].removeAttr("selected");
+		// 	}
+		// }
+
+		$("#pages").on("change",function(){
+			if($(this).val() == "1") {
+				window.location.href="#page-1";
+				$("#pages1").selectedIndex = 0;
+				// select($(this),1);
+			}
+			else if($(this).val() == "2") {
+				window.location.href="#page-2";
+				$("#pages2").selectedIndex = 1;
+				// select($(this),2);
+			}
+			else if($(this).val() == "3") {
+				window.location.href="#page-3";
+				$(this).selectedIndex = 2;
+				// select($(this),3);
+			}
+		});
+
+		// $("#pages2").on("change",function(){
+		// 	if($(this).val() == "1") {
+		// 		window.location.href="#page-1";
+		// 		// select($(this),1);
+		// 	}
+		// 	else if($(this).val() == "2") {
+		// 		window.location.href="#page-2";
+		// 		// select($(this),2);
+
+		// 	}
+		// 	else if($(this).val() == "3") {
+		// 		window.location.href="#page-3";
+		// 		// select($(this),3);
+
+		// 	}
+		// });
+
+		// $("#pages3").on("change",function(){
+		// 	if($(this).val() == "1") {
+		// 		window.location.href="#page-1";
+		// 		// select($(this),1);
+		// 	}
+		// 	else if($(this).val() == "2") {
+		// 		window.location.href="#page-2";
+		// 		// select($(this),2);
+
+		// 	}
+		// 	else if($(this).val() == "3") {
+		// 		window.location.href="#page-3";
+		// 		// select($(this),3);
+
+		// 	}
+		// });
+
+		$( document ).bind( 'mobileinit', function(){
+		  $.mobile.loader.prototype.options.text = "loading";
+		  $.mobile.loader.prototype.options.textVisible = false;
+		  $.mobile.loader.prototype.options.theme = "a";
+		  $.mobile.loader.prototype.options.html = "";
+		});
+
+		$.mobile.loading( 'show', {
+			text: 'foo',
+			textVisible: true,
+			theme: 'z',
+			html: ""
+		});
+	</script>
+
+</html>
